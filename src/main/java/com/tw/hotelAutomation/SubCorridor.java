@@ -23,5 +23,6 @@ public class SubCorridor {
 
     public void actOnMotion() {
         this.lightSwitch = ON;
+        this.acSwitch = OFF;
     }
 }

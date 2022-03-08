@@ -2,6 +2,7 @@ package com.tw.hotelAutomation;
 
 import org.junit.jupiter.api.Test;
 
+import static com.tw.hotelAutomation.SwitchStatus.OFF;
 import static com.tw.hotelAutomation.SwitchStatus.ON;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -15,5 +16,15 @@ public class SubCorridorTest {
         SwitchStatus lightSwitchAfterMotion = subCorridor.getLightSwitch();
 
         assertThat(lightSwitchAfterMotion, is(ON));
+    }
+
+    @Test
+    void shouldSwitchOffAcWhenMotionIsDetected() {
+        SubCorridor subCorridor = new SubCorridor();
+
+        subCorridor.actOnMotion();
+        SwitchStatus acSwitchAfterMotion = subCorridor.getAcSwitch();
+
+        assertThat(acSwitchAfterMotion, is(OFF));
     }
 }
