@@ -23,9 +23,41 @@ public class AutomationApp {
     }
 
     private static void automate(HotelAutomation hotel) {
+        while(true){
+            displayAutomationStatus(hotel);
+            System.out.println("Enter Sensing Input");
+            getSensorInput(hotel);
+        }
+
+    }
+
+    private static void getSensorInput(HotelAutomation hotel) {
         Scanner scanner = new Scanner(System.in);
+        int numberOfFloors = hotel.getFloors().length;
+        int numberOfSubCorridors = hotel.getFloors()[0].getSubCorridors().length;
+        while(true){
+            System.out.println("Enter Floor number in which motion is detected : ");
+            int floorNumber = scanner.nextInt();
+            if(floorNumber <= numberOfFloors && floorNumber >= 1){
+                while(true){
+                    System.out.println("Enter Sub corridor number in which motion is detected : ");
+                    int subCorridorNumber = scanner.nextInt();
+                    if(subCorridorNumber <= numberOfSubCorridors && subCorridorNumber >= 1){
+                        hotel.actOnMotion(floorNumber, subCorridorNumber);
+                    }else{
+                        System.out.println("There are " + numberOfSubCorridors + " sub corridors in the floor.");
+                        continue;
+                    }
+                    break;
+                }
 
+            }else{
+                System.out.println("There are " + numberOfFloors + " floors in the hotel.");
+                continue;
+            }
 
+            break;
+        }
     }
 
     private static void displayAutomationStatus(HotelAutomation hotel) {
