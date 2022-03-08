@@ -20,4 +20,8 @@ public class SubCorridor {
     public SwitchStatus getAcSwitch() {
         return this.acSwitch;
     }
+
+    public void actOnMotion() {
+        this.lightSwitch = ON;
+    }
 }
