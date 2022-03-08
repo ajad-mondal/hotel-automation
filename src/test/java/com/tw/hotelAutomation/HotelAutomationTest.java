@@ -50,4 +50,17 @@ public class HotelAutomationTest {
 
         assertThat(lightSwitch, is(OFF));
     }
+
+    @Test
+    void shouldSwitchOnAcInSubCorridorsWhenAutomationRunAtFirst() {
+        HotelAutomation hotel = createHotel(1, 1, 1);
+        List<Floor> floors = hotel.getFloors();
+        Floor floor = floors.get(0);
+        List<SubCorridor> subCorridors = floor.getSubCorridors();
+        SubCorridor subCorridor = subCorridors.get(0);
+
+        SwitchStatus acSwitch = subCorridor.getAcSwitch();
+
+        assertThat(acSwitch, is(ON));
+    }
 }
