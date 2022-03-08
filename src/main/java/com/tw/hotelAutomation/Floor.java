@@ -1,28 +1,25 @@
 package com.tw.hotelAutomation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Floor {
-    private final List<MainCorridor> mainCorridors;
-    private final List<SubCorridor> subCorridors;
+    private final MainCorridor[] mainCorridors;
+    private final SubCorridor[] subCorridors;
 
     public Floor(int numberOfMainCorridors, int numberOfSubCorridors) {
-        mainCorridors = new ArrayList<>();
-        subCorridors = new ArrayList<>();
+        mainCorridors = new MainCorridor[numberOfMainCorridors];
+        subCorridors = new SubCorridor[numberOfSubCorridors];
         for (int i = 0; i < numberOfMainCorridors; i++) {
-            mainCorridors.add(new MainCorridor());
+            mainCorridors[i] = new MainCorridor();
         }
         for (int i = 0; i < numberOfSubCorridors; i++) {
-            subCorridors.add(new SubCorridor());
+            subCorridors[i] = new SubCorridor();
         }
     }
 
-    public List<MainCorridor> getMainCorridors() {
+    public MainCorridor[] getMainCorridors() {
         return this.mainCorridors;
     }
 
-    public List<SubCorridor> getSubCorridors() {
+    public SubCorridor[] getSubCorridors() {
         return this.subCorridors;
     }
 }

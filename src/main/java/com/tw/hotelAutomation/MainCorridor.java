@@ -5,18 +5,18 @@ import static com.tw.hotelAutomation.SwitchStatus.ON;
 public class MainCorridor {
 
     private SwitchStatus lightStatus;
-    private SwitchStatus ACStatus;
+    private SwitchStatus acStatus;
 
     public MainCorridor() {
         this.lightStatus = ON;
-        this.ACStatus = ON;
+        this.acStatus = ON;
     }
 
     public SwitchStatus getLightSwitch() {
         return this.lightStatus;
     }
 
-    public SwitchStatus getACSwitch() {
-        return this.ACStatus;
+    public SwitchStatus getAcSwitch() {
+        return this.acStatus;
     }
 }

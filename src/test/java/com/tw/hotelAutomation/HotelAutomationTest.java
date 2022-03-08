@@ -2,8 +2,6 @@ package com.tw.hotelAutomation;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static com.tw.hotelAutomation.HotelAutomation.createHotel;
 import static com.tw.hotelAutomation.SwitchStatus.OFF;
 import static com.tw.hotelAutomation.SwitchStatus.ON;
@@ -15,10 +13,10 @@ public class HotelAutomationTest {
     @Test
     void shouldSwitchOnLightOfMainCorridorAllTime() {
         HotelAutomation hotel = createHotel(1, 1, 1);
-        List<Floor> floors = hotel.getFloors();
-        Floor floor = floors.get(0);
-        List<MainCorridor> mainCorridors = floor.getMainCorridors();
-        MainCorridor mainCorridor = mainCorridors.get(0);
+        Floor[] floors = hotel.getFloors();
+        Floor floor = floors[0];
+        MainCorridor[] mainCorridors = floor.getMainCorridors();
+        MainCorridor mainCorridor = mainCorridors[0];
 
         SwitchStatus lightStatus = mainCorridor.getLightSwitch();
 
@@ -28,12 +26,12 @@ public class HotelAutomationTest {
     @Test
     void shouldSwitchOnACOfMainCorridorAllTime() {
         HotelAutomation hotel = createHotel(1, 1, 1);
-        List<Floor> floors = hotel.getFloors();
-        Floor floor = floors.get(0);
-        List<MainCorridor> mainCorridors = floor.getMainCorridors();
-        MainCorridor mainCorridor = mainCorridors.get(0);
+        Floor[] floors = hotel.getFloors();
+        Floor floor = floors[0];
+        MainCorridor[] mainCorridors = floor.getMainCorridors();
+        MainCorridor mainCorridor = mainCorridors[0];
 
-        SwitchStatus ACStatus = mainCorridor.getACSwitch();
+        SwitchStatus ACStatus = mainCorridor.getAcSwitch();
 
         assertThat(ACStatus, is(equalTo(ON)));
     }
@@ -41,10 +39,10 @@ public class HotelAutomationTest {
     @Test
     void shouldSwitchOffLightInSubCorridorsWhenAutomationRunAtFirst() {
         HotelAutomation hotel = createHotel(1, 1, 1);
-        List<Floor> floors = hotel.getFloors();
-        Floor floor = floors.get(0);
-        List<SubCorridor> subCorridors = floor.getSubCorridors();
-        SubCorridor subCorridor = subCorridors.get(0);
+        Floor[] floors = hotel.getFloors();
+        Floor floor = floors[0];
+        SubCorridor[] subCorridors = floor.getSubCorridors();
+        SubCorridor subCorridor = subCorridors[0];
 
         SwitchStatus lightSwitch = subCorridor.getLightSwitch();
 
@@ -54,10 +52,10 @@ public class HotelAutomationTest {
     @Test
     void shouldSwitchOnAcInSubCorridorsWhenAutomationRunAtFirst() {
         HotelAutomation hotel = createHotel(1, 1, 1);
-        List<Floor> floors = hotel.getFloors();
-        Floor floor = floors.get(0);
-        List<SubCorridor> subCorridors = floor.getSubCorridors();
-        SubCorridor subCorridor = subCorridors.get(0);
+        Floor[] floors = hotel.getFloors();
+        Floor floor = floors[0];
+        SubCorridor[] subCorridors = floor.getSubCorridors();
+        SubCorridor subCorridor = subCorridors[0];
 
         SwitchStatus acSwitch = subCorridor.getAcSwitch();
 
