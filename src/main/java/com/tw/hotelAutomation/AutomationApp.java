@@ -43,7 +43,7 @@ public class AutomationApp {
                     System.out.println("Enter Sub corridor number in which motion is detected : ");
                     int subCorridorNumber = scanner.nextInt();
                     if(subCorridorNumber <= numberOfSubCorridors && subCorridorNumber >= 1){
-                        hotel.actOnMotion(floorNumber, subCorridorNumber);
+                        hotel.motionSensed(floorNumber, subCorridorNumber);
                     }else{
                         System.out.println("There are " + numberOfSubCorridors + " sub corridors in the floor.");
                         continue;

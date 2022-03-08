@@ -8,23 +8,48 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 public class SubCorridorTest {
+
+    public static final int TWO_SECONDS = 2000;
+
     @Test
     void shouldSwitchOnLightWhenMotionIsDetected() {
         SubCorridor subCorridor = new SubCorridor();
 
-        subCorridor.actOnMotion();
-        SwitchStatus lightSwitchAfterMotion = subCorridor.getLightSwitch();
+        subCorridor.actOnMotion(TWO_SECONDS);
+        SwitchStatus lightSwitch = subCorridor.getLightSwitch();
 
-        assertThat(lightSwitchAfterMotion, is(ON));
+        assertThat(lightSwitch, is(ON));
     }
 
     @Test
     void shouldSwitchOffAcWhenMotionIsDetected() {
         SubCorridor subCorridor = new SubCorridor();
 
-        subCorridor.actOnMotion();
-        SwitchStatus acSwitchAfterMotion = subCorridor.getAcSwitch();
+        subCorridor.actOnMotion(TWO_SECONDS);
+        SwitchStatus acSwitch = subCorridor.getAcSwitch();
 
-        assertThat(acSwitchAfterMotion, is(OFF));
+        assertThat(acSwitch, is(OFF));
+    }
+
+    @Test
+    void shouldSwitchOffLightOneMinuteAfterMotion() throws InterruptedException {
+        SubCorridor subCorridor = new SubCorridor();
+
+        subCorridor.actOnMotion(TWO_SECONDS);
+        Thread.sleep(TWO_SECONDS);
+        SwitchStatus lightSwitch = subCorridor.getLightSwitch();
+
+        assertThat(lightSwitch, is(OFF));
+    }
+
+    @Test
+    void shouldSwitchOnAcOneMinuteAfterMotion() throws InterruptedException {
+        SubCorridor subCorridor = new SubCorridor();
+
+        subCorridor.actOnMotion(TWO_SECONDS);
+        Thread.sleep(TWO_SECONDS);
+        SwitchStatus acSwitch = subCorridor.getAcSwitch();
+
+        assertThat(acSwitch, is(OFF));
     }
 }

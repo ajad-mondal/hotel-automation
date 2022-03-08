@@ -1,8 +1,5 @@
 package com.tw.hotelAutomation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class HotelAutomation {
     private final Floor[] floors;
 
@@ -19,5 +16,13 @@ public class HotelAutomation {
 
     public Floor[] getFloors() {
         return this.floors;
+    }
+
+    public void motionSensed(int floorNumber, int subCorridorNumber) {
+        final int ONE_MINUTE = 60000;
+        Floor floor = floors[floorNumber - 1];
+        SubCorridor subCorridor = floor.getSubCorridors()[subCorridorNumber - 1];
+
+        subCorridor.actOnMotion(ONE_MINUTE);
     }
 }
