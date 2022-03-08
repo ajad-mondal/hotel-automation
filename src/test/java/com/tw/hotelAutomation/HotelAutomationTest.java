@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static com.tw.hotelAutomation.HotelAutomation.createHotel;
+import static com.tw.hotelAutomation.SwitchStatus.OFF;
 import static com.tw.hotelAutomation.SwitchStatus.ON;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
@@ -18,7 +19,9 @@ public class HotelAutomationTest {
         Floor floor = floors.get(0);
         List<MainCorridor> mainCorridors = floor.getMainCorridors();
         MainCorridor mainCorridor = mainCorridors.get(0);
+
         SwitchStatus lightStatus = mainCorridor.getLightSwitch();
+
         assertThat(lightStatus, is(equalTo(ON)));
     }
 
@@ -29,7 +32,22 @@ public class HotelAutomationTest {
         Floor floor = floors.get(0);
         List<MainCorridor> mainCorridors = floor.getMainCorridors();
         MainCorridor mainCorridor = mainCorridors.get(0);
+
         SwitchStatus ACStatus = mainCorridor.getACSwitch();
+
         assertThat(ACStatus, is(equalTo(ON)));
+    }
+
+    @Test
+    void shouldSwitchOffLightInSubCorridorsWhenAutomationRunAtFirst() {
+        HotelAutomation hotel = createHotel(1, 1, 1);
+        List<Floor> floors = hotel.getFloors();
+        Floor floor = floors.get(0);
+        List<SubCorridor> subCorridors = floor.getSubCorridors();
+        SubCorridor subCorridor = subCorridors.get(0);
+
+        SwitchStatus lightSwitch = subCorridor.getLightSwitch();
+
+        assertThat(lightSwitch, is(OFF));
     }
 }
