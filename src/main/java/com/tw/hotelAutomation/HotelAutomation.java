@@ -2,9 +2,13 @@ package com.tw.hotelAutomation;
 
 public class HotelAutomation {
     private final Floor[] floors;
+    private boolean automationRunning;
+    private final MotionSensor sensor;
 
     private HotelAutomation(int numberOfFloors, int numberOfMainCorridors, int numberOfSubCorridors) {
         floors = new Floor[numberOfFloors];
+        sensor = new MotionSensor(numberOfFloors, numberOfSubCorridors);
+        automationRunning = false;
         for (int i = 0; i < numberOfFloors; i++) {
             floors[i] = new Floor(numberOfMainCorridors, numberOfSubCorridors);
         }
