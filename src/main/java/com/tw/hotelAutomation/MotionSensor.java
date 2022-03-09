@@ -13,32 +13,36 @@ public class MotionSensor {
         scanner = new Scanner(System.in);
     }
 
-    public int[] nextInput() {
-        int floorNumber;
-        int subCorridorNumber;
-        while (true) {
-            System.out.println("Enter Floor number in which motion is detected : ");
-            floorNumber = scanner.nextInt();
-            if (isValid(floorNumber, numberOfFloors)) {
-                while (true) {
-                    System.out.println("Enter Sub corridor number in which motion is detected : ");
-                    subCorridorNumber = scanner.nextInt();
-                    if (!isValid(subCorridorNumber, numberOfSubCorridors)) {
-                        System.out.println("There are " + numberOfSubCorridors + " sub corridors in the floor.");
-                        continue;
-                    }
-                    break;
-                }
-            } else {
-                System.out.println("There are " + numberOfFloors + " floors in the hotel.");
-                continue;
-            }
-            break;
-        }
+    public int[] nextMotion() {
+        int floorNumber = nextFloor();
+        int subCorridorNumber = nextSubCorridor();
+
         return new int[]{floorNumber, subCorridorNumber};
     }
 
-    private boolean isValid(int inputValue, int rangeOfValue) {
-        return (inputValue <= rangeOfValue) && (inputValue >= 1);
+    private int nextFloor() {
+        int floorNumber;
+        System.out.println("Enter Floor number in which motion is detected : ");
+        floorNumber = scanner.nextInt();
+        if (isNotValid(floorNumber, numberOfFloors)) {
+            System.out.println("There are " + numberOfFloors + " floors in the hotel.");
+            floorNumber = nextFloor();
+        }
+        return floorNumber;
+    }
+
+    private int nextSubCorridor() {
+        int subCorridorNumber;
+        System.out.println("Enter Sub corridor number in which motion is detected : ");
+        subCorridorNumber = scanner.nextInt();
+        if (isNotValid(subCorridorNumber, numberOfSubCorridors)) {
+            System.out.println("There are " + numberOfSubCorridors + " sub corridors in the floor.");
+            subCorridorNumber = nextSubCorridor();
+        }
+        return subCorridorNumber;
+    }
+
+    private boolean isNotValid(int inputValue, int rangeOfValue) {
+        return !(inputValue <= rangeOfValue) && (inputValue >= 1);
     }
 }

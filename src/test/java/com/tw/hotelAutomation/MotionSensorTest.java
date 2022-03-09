@@ -10,7 +10,7 @@ public class MotionSensorTest {
     void shouldReturnTwoIntegerWhenNextInputIsCalled() {
         MotionSensor sensor = new MotionSensor(2, 2);
 
-        int[] input = sensor.nextInput();
+        int[] input = sensor.nextMotion();
         int numbersReturned = input.length;
 
         assertThat(numbersReturned, is(2));

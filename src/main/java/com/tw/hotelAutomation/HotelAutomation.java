@@ -29,7 +29,7 @@ public class HotelAutomation {
         while(automationRunning){
             displayRecord();
 
-            int[] sensorInputs = sensor.nextInput();
+            int[] sensorInputs = sensor.nextMotion();
             int floorNumber = sensorInputs[0];
             int subCorridorNumber = sensorInputs[1];
 
