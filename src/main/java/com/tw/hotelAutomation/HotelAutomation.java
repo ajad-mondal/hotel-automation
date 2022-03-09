@@ -25,4 +25,44 @@ public class HotelAutomation {
 
         subCorridor.actOnMotion(ONE_MINUTE);
     }
+
+    public void automate() {
+        automationRunning = true;
+
+        System.out.println("Automation Started.");
+        while(automationRunning){
+            displayRecord();
+
+        }
+
+        System.out.println("Automation Terminated.");
+    }
+
+    private void displayRecord() {
+        System.out.println("__________________________________________");
+        int floorCounter = 1;
+        for (Floor floor : floors) {
+            int mainCorridorCounter = 1;
+            int subCorridorCounter = 1;
+
+            System.out.println("Floor " + floorCounter++);
+            MainCorridor[] mainCorridors = floor.getMainCorridors();
+            SubCorridor[] subCorridors = floor.getSubCorridors();
+
+            for (MainCorridor mainCorridor :
+                    mainCorridors) {
+                System.out.println("Main Corridor " + mainCorridorCounter++
+                        + " | Light : " + mainCorridor.getLightSwitch()
+                        + " | AC : " + mainCorridor.getAcSwitch());
+            }
+
+            for (SubCorridor subCorridor :
+                    subCorridors) {
+                System.out.println("Sub Corridor " + subCorridorCounter++
+                        + " | Light : " + subCorridor.getLightSwitch()
+                        + " | AC : " + subCorridor.getAcSwitch());
+            }
+            System.out.println("........................................");
+        }
+    }
 }
